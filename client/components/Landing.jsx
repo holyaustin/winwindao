@@ -14,20 +14,7 @@ const commonStyles =
 
 const Landing = () => {
   const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    try {
-      const response = axios.get('https://api.covalenthq.com/v1/pricing/volatility/?quote-currency=USD&format=JSON&tickers=ETH&key=ckey_c2ff142ae0e243359fcfde35554');
-      console.log(response.data.data);
-      setItems(response.data.data.items)
-         } catch (err) {
-      // Handle Error Here
-      console.error(err);
-     }
-  }, [])
-
   const [isLoading, setIsLoading] = useState(false);
-
  const router = useRouter();
  const [connectedWalletAddress, setConnectedWalletAddressState] = useState("");
 
@@ -38,21 +25,34 @@ const Landing = () => {
       return;
     }
 
+  useEffect(() => {
+      getData()
+  }, [])
+    
     const getData = async () => {
-      //Using fetch
-      /**
-      const response = await fetch("https://api.covalenthq.com/v1/chains/status/?key=ckey_c2ff142ae0e243359fcfde35554")
-      const data = await response.json()
-      setItems(data.data.items)
-      **/
-      //using axios https://api.covalenthq.com/v1/chains/?quote-currency=USD&format=JSON&key=ckey_c2ff142ae0e243359fcfde35554
-      // https://api.covalenthq.com/v1/chains/status/?quote-currency=USD&format=JSON&key=ckey_c2ff142ae0e243359fcfde35554
-      // https://api.covalenthq.com/v1/pricing/volatility/?quote-currency=USD&format=JSON&tickers=ETH&key=ckey_c2ff142ae0e243359fcfde35554
-      // https://api.covalenthq.com/v1/pricing/volatility/?quote-currency=USD&format=JSON&tickers=ETH&key=ckey_c2ff142ae0e243359fcfde35554
-      
-
-       
-    }
+    //Using fetch
+    /**
+    const response = await fetch("https://api.covalenthq.com/v1/chains/status/?key=ckey_c2ff142ae0e243359fcfde35554")
+    const data = await response.json()
+    setItems(data.data.items)
+    **/
+    //using axios https://api.covalenthq.com/v1/chains/?quote-currency=USD&format=JSON&key=ckey_c2ff142ae0e243359fcfde35554
+    // https://api.covalenthq.com/v1/chains/status/?quote-currency=USD&format=JSON&key=ckey_c2ff142ae0e243359fcfde35554
+    // https://api.covalenthq.com/v1/pricing/volatility/?quote-currency=USD&format=JSON&tickers=ETH&key=ckey_c2ff142ae0e243359fcfde35554
+    // https://api.covalenthq.com/v1/pricing/volatility/?quote-currency=USD&format=JSON&tickers=ETH&key=ckey_c2ff142ae0e243359fcfde35554
+    
+    try {
+      const response = await axios.get('https://api.covalenthq.com/v1/pricing/volatility/?quote-currency=USD&format=JSON&tickers=ETH&key=ckey_c2ff142ae0e243359fcfde35554');
+      console.log(response.data.data);
+      setItems(response.data.data.items)
+         } catch (err) {
+      // Handle Error Here
+      console.error(err);
+     }
+     
+  }
+    
+    
 
     async function setConnectedWalletAddress() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
