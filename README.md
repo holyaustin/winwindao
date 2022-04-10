@@ -1,7 +1,7 @@
 # WinWin DAO
 Decentralize Autonomous Organisation for Investestors of web3. 
 
-# Decription
+# Description
 A decewntralized Autonomous Organisation for Investors. A Member joins the DAO as an investor Proposals are voted for. As we know, proposals are voted for Yes or No. In WinWin DAO, the concept is different. When proposals are submitted, Members are given a time frame to vote. If a member voted YES, he is eligible to contribute to the treasure for the finance of that web3 project. Members who voted NO are assumed that they don't believe union the project therefore they will not contribute. The smart contract tracks the proposal you voted yes and enlist you as an investor. If the project invested becomes a flourishing one and started yielding profit, the ONLY dividend is shared only by members that invested. The implication here is that investors choose projects to invest in or decline. thee makes it a WIN-WIN situation for investors, web3 projects, and the DAO at large. If I am not comfortable with a project, I vote No. if I am comfortable I vote YES and contribute to the treasiry.
 
 # Deployed smart contract->Rinkeby Testnet
