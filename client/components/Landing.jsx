@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState  } from "react";
 import { ethers } from "ethers";
+import axios from "axios";
 import { hasEthereum } from "../lib/ethereum";
 import Script from "next/script";
 import { useRouter } from 'next/router';
@@ -12,6 +13,19 @@ const commonStyles =
   "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] font-black text-2xl font-light text-white";
 
 const Landing = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    try {
+      const response = axios.get('https://api.covalenthq.com/v1/pricing/volatility/?quote-currency=USD&format=JSON&tickers=ETH&key=ckey_c2ff142ae0e243359fcfde35554');
+      console.log(response.data.data);
+      setItems(response.data.data.items)
+         } catch (err) {
+      // Handle Error Here
+      console.error(err);
+     }
+  }, [])
+
   const [isLoading, setIsLoading] = useState(false);
 
  const router = useRouter();
@@ -23,6 +37,23 @@ const Landing = () => {
       setConnectedWalletAddressState(`MetaMask unavailable`);
       return;
     }
+
+    const getData = async () => {
+      //Using fetch
+      /**
+      const response = await fetch("https://api.covalenthq.com/v1/chains/status/?key=ckey_c2ff142ae0e243359fcfde35554")
+      const data = await response.json()
+      setItems(data.data.items)
+      **/
+      //using axios https://api.covalenthq.com/v1/chains/?quote-currency=USD&format=JSON&key=ckey_c2ff142ae0e243359fcfde35554
+      // https://api.covalenthq.com/v1/chains/status/?quote-currency=USD&format=JSON&key=ckey_c2ff142ae0e243359fcfde35554
+      // https://api.covalenthq.com/v1/pricing/volatility/?quote-currency=USD&format=JSON&tickers=ETH&key=ckey_c2ff142ae0e243359fcfde35554
+      // https://api.covalenthq.com/v1/pricing/volatility/?quote-currency=USD&format=JSON&tickers=ETH&key=ckey_c2ff142ae0e243359fcfde35554
+      
+
+       
+    }
+
     async function setConnectedWalletAddress() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -144,32 +175,46 @@ const renderContent = () => {
         </div>
       </div>
 
- 
-        <h1>ERC20 Spot Prices</h1>
+      <div className="text-white text-base font-semibold text-3xl flex justify-center mb-10">
+        <p>Membership cost ETH (ETH Spot Price)</p>
+        <br /><br /><br />
+        <p></p>
+
+      </div>
 
     <br />
-    <table id="tokenTable" class="content-table">
-    <Helmet>
-    <script src= "./covalent.js" 
-    type="text/javascript" />
-    </Helmet>
-        <thead>
+
+ {console.log(items)}
+    <table>
+      <thead>
             <tr>
                 <th></th>
-                <th>Token</th>
+                <th>Token Name</th>
                 <th>Symbol</th>
-                <th>Price</th>
+                <th>Current Price</th>
             </tr>
         </thead>
         <tbody>
-             
+        <th></th>
+                <th>{items.map(item => (
+          <li key={item.contract_name}>
+            {item.contract_name}
+          </li>
+        ))}</th>
+
+                <th>{items.map(item => (
+          <li key={item.contract_ticker_symbol}>
+            {item.contract_ticker_symbol}
+          </li>
+        ))}</th>
+
+                <th>{items.map(item => (
+          <li key={item.quote_rate}>
+            {item.quote_rate}
+          </li>
+        ))}</th> 
         </tbody>
     </table>
-    
-          <Helmet>
-          <script src= "./covalent.js" 
-          type="text/javascript" />
-          </Helmet>
 
     <br /> <br /> <br />
 

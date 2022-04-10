@@ -10,7 +10,7 @@ function getAccessToken() {
     // environement variable or other configuration that's kept outside of 
     // your code base. For this to work, you need to set the
     // WEB3STORAGE_TOKEN environment variable before you run your code.
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEE4NmU3ODdhNzQ1NUIxQjc0Q2VEMDJkMDU0RTZBMEUxNTJDYjQzRDgiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDY1MTQ5ODkwMDMsIm5hbWUiOiJyZWFsdG9yREFPIn0.6Lt8vrGvVZQURQM6E4vJLMNHjaBAb5_DUHSL-VhpZTk";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDI3N2RiMEEzNTJlREM2ZjZjMjdjMDI4Mzc3M2JiZjI3OTdEQUREODkiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDk1OTk4MTY0MDAsIm5hbWUiOiJXaW5XSW5EQU8ifQ.w7D_ZHQ8J9ChErYMKFBP_0-MC38BAzb4VwWntyuizx8";
 
     // const token = process.env.WEB3STORAGE_TOKEN
     return token;
